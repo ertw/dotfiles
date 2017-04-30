@@ -1,3 +1,7 @@
+#! /bin.sh
+### links <file> to ~/dotfiles/<file>          ###
+### supported platforms: MacOS, Linux, FreeBSD ###
+
 # tests if a file exists, returns bool
 file_exists () {
 	if [[ -a "$1" ]]; then

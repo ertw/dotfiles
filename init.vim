@@ -30,7 +30,7 @@ Plug 'elixir-lang/vim-elixir'
 " Plug 'Valloric/YouCompleteMe', { 'do': 'python ./install.py' }
 call plug#end()
 " }}}
-" *** Language specific config *** {{{
+" *** Language & OS specific config *** {{{
 " *** C config *** {{{
 " autogenerate ctags
 au BufWritePost *.c,*.cpp,*.h silent! !ctags -R &
@@ -39,6 +39,12 @@ au BufWritePost *.c,*.cpp,*.h silent! !ctags -R &
 " enable rainbow parens
 au VimEnter *.rkt RainbowParenthesesToggle
 " }}}
+" OS detection
+if has("win64") || has("win32") || has("win16")
+	let g:os = "Windows"
+else
+	let g:os = system('uname')
+endif
 " }}}
 " *** Syntastic *** {{{
 " syntastic general
@@ -109,7 +115,7 @@ augroup END
 let g:airline_powerline_fonts = 1
 " horizontal line on cursor
 set cursorline
-" enable truecolor- doesn't seem to work mosh
+" enable truecolor- some compatibility issues?
 set termguicolors
 " red cursor when terminal is active - this line needs to be exaluated after
 highlight TermCursor ctermfg=red guifg=red
