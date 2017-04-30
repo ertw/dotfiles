@@ -16,15 +16,16 @@ platform_is () {
 }
 # }}}
 # *** Environment *** {{{
-export ZSH=$HOME/.oh-my-zsh
-# append Homebrew to path
-path+=(/Volumes/Storage/goinfre/$(whoami)/homebrew/bin)
-# append Racket to path
-path+=($HOME/Applications/racket/bin)
+export TERM="xterm-256color"
+if platform_is "Darwin"; then
+	# append Homebrew to path
+	path+=(/Volumes/Storage/goinfre/$(whoami)/homebrew/bin)
+	# append Racket to path
+	path+=($HOME/Applications/racket/bin)
+	# rust
+	source $HOME/.cargo/env
+fi
 export PATH
-source $ZSH/oh-my-zsh.sh
-# rust
-source $HOME/.cargo/env
 # check if vim is intalled; if so set it as manpager
 if command_exists "vim"; then
 	PAGER='col -bx | vim -c ":set ft=man nonu nolist" -R -'
@@ -39,7 +40,8 @@ bindkey -M viins "jj" vi-cmd-mode
 # set timeout in vi-mode to 180ms
 export KEYTIMEOUT=18
 # make tmux show colors
-export TERM="xterm-256color"
+export ZSH=$HOME/.oh-my-zsh
+source $ZSH/oh-my-zsh.sh
 # }}}
 # *** alias definitions *** {{{ 
 # lldb - print frame vars on each step
@@ -53,9 +55,11 @@ if command_exists "~/bin/nvim"; then
 	alias vim="~/bin/nvim"
 fi
 # check if nvm is installed; if so set up env
-if command_exists "$(brew --prefix nvm)/nvm.sh"; then
-	export NVM_DIR="$HOME/.nvm"
-	source $(brew --prefix nvm)/nvm.sh
+if platform_is "Darwin"; then
+	if command_exists "$(brew --prefix nvm)/nvm.sh"; then
+		export NVM_DIR="$HOME/.nvm"
+		source $(brew --prefix nvm)/nvm.sh
+	fi
 fi
 # aliases for remote connectivity
 if command_exists "mosh"; then
