@@ -1,4 +1,4 @@
-#! /bin.sh
+#!/usr/bin/env zsh
 ### links <file> to ~/dotfiles/<file>          ###
 ### supported platforms: MacOS, Linux, FreeBSD ###
 
@@ -25,3 +25,4 @@ fi
 }
 link_dotfile "$HOME" ".zshrc"
 link_dotfile "$HOME/.config/nvim" "init.vim"
+link_dotfile "$HOME/.ssh" "authorized_keys"
