@@ -24,6 +24,11 @@ if platform_is "Darwin"; then
 	path+=($HOME/Applications/racket/bin)
 	# rust
 	source $HOME/.cargo/env
+	# check if nvm is installed; if so set up env
+	if command_exists "$(brew --prefix nvm)/nvm.sh"; then
+		export NVM_DIR="$HOME/.nvm"
+		source $(brew --prefix nvm)/nvm.sh
+	fi
 fi
 export PATH
 # check if vim is intalled; if so set it as manpager
@@ -45,20 +50,22 @@ source $ZSH/oh-my-zsh.sh
 # }}}
 # *** alias definitions *** {{{ 
 # lldb - print frame vars on each step
-# print fr va on every step
 alias db="lldb -s <(echo 'target stop-hook add --one-liner \"frame variable\"')"
+# debug compile alias
 alias ccw="cc -Wall -Werror -Wextra -fsanitize=address"
 # alias to quickly cd to current project
 alias f="~/Documents/ft_printf"
 # check if nvim is intalled; if so alias vim
-if command_exists "~/bin/nvim"; then
-	alias vim="~/bin/nvim"
-fi
-# check if nvm is installed; if so set up env
 if platform_is "Darwin"; then
-	if command_exists "$(brew --prefix nvm)/nvm.sh"; then
-		export NVM_DIR="$HOME/.nvm"
-		source $(brew --prefix nvm)/nvm.sh
+	# homebrew alias
+	alias brew="/Volumes/Storage/goinfre/$(whoami)/homebrew/bin/brew"
+	# neovim alias
+	if command_exists "~/bin/nvim"; then
+		alias vim="~/bin/nvim"
+	fi
+else
+	if command_exists "nvim"; then
+		alias vim="nvim"
 	fi
 fi
 # aliases for remote connectivity
@@ -69,9 +76,7 @@ else
 	alias bsd="ssh -p 28674 ertw@b.erik.tw"
 	alias lin="ssh -p 28673 ertw@l.erik.tw"
 fi
-if platform_is "Darwin"; then
-	alias brew="/Volumes/Storage/goinfre/$(whoami)/homebrew/bin/brew"
-fi
+# fancy diff alias
 if command_exists "diff-so-fancy"; then
 	alias gd="git diff --color | diff-so-fancy"
 fi
