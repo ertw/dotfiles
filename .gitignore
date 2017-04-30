@@ -1,0 +1,5 @@
+# OS junk
+._*
+.nfs*
+*.swp
+*.DS_Store
