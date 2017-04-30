@@ -1,4 +1,20 @@
 # vim:foldmethod=marker:foldlevel=0
+# *** Function definitions *** {{{
+# function to determine if a command exisits
+command_exists () {
+    type "$1" &> /dev/null ;
+}
+# return bool for platform from uname:
+# FreeBSD, Darwin, Linux
+platform_is () {
+	unamestr=$(uname)
+	if [[ "$1" == "$unamestr" ]]; then
+		return 0
+	else
+		return 1
+	fi
+}
+# }}}
 # *** Environment *** {{{
 export ZSH=$HOME/.oh-my-zsh
 # append Homebrew to path
@@ -24,22 +40,6 @@ bindkey -M viins "jj" vi-cmd-mode
 export KEYTIMEOUT=18
 # make tmux show colors
 export TERM="xterm-256color"
-# }}}
-# *** Function definitions *** {{{
-# function to determine if a command exisits
-command_exists () {
-    type "$1" &> /dev/null ;
-}
-# return bool for platform from uname:
-# FreeBSD, Darwin, Linux
-platform_is () {
-	unamestr=$(uname)
-	if [[ "$1" == "$unamestr" ]]; then
-		return 0
-	else
-		return 1
-	fi
-}
 # }}}
 # *** alias definitions *** {{{ 
 # lldb - print frame vars on each step
