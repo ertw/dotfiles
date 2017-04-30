@@ -106,17 +106,22 @@ set background=dark
 let g:gruvbox_contrast_light='soft'
 let g:gruvbox_contrast_dark='soft'
 " }}}"only highlight line in the active pane
+" horizontal line on cursor
+set cursorline
 augroup BgHighlight
-    autocmd!
-    autocmd WinEnter * set cul
-    autocmd WinLeave * set nocul
+	autocmd!
+	autocmd WinEnter * set cul
+	autocmd WinLeave * set nocul
+augroup END
+augroup CulHighlight
+	autocmd!
+	autocmd InsertEnter * hi cursorline guibg=Black
+	autocmd InsertLeave * hi cursorline guibg=#3c3836
 augroup END
 " enable special fonts for powerline
 let g:airline_powerline_fonts = 1
 " set airline theme
-let g:airline_theme='powerlineish'
-" horizontal line on cursor
-set cursorline
+let g:airline_theme='base16'
 " enable truecolor- some compatibility issues?
 set termguicolors
 " red cursor when terminal is active - this line needs to be exaluated after
