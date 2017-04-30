@@ -60,8 +60,8 @@ if platform_is "Darwin"; then
 	# homebrew alias
 	alias brew="/Volumes/Storage/goinfre/$(whoami)/homebrew/bin/brew"
 	# neovim alias
-	if command_exists "~/bin/nvim"; then
-		alias vim="~/bin/nvim"
+	if command_exists "$HOME/bin/nvim"; then
+		alias vim="$HOME/bin/nvim"
 	fi
 else
 	if command_exists "nvim"; then
