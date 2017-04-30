@@ -8,7 +8,7 @@ call plug#begin('~/.vim/plugged')
 " Plug 'elmcast/elm-vim'
 " Plug 'Valloric/YouCompleteMe'
 Plug 'vim-airline/vim-airline'
-" Plug 'vim-airline/vim-airline-themes'
+Plug 'vim-airline/vim-airline-themes'
 Plug 'scrooloose/syntastic'
 " Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 " Plug 'rhysd/vim-crystal'
@@ -113,6 +113,8 @@ augroup BgHighlight
 augroup END
 " enable special fonts for powerline
 let g:airline_powerline_fonts = 1
+" set airline theme
+let g:airline_theme='powerlineish'
 " horizontal line on cursor
 set cursorline
 " enable truecolor- some compatibility issues?
