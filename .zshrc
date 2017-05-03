@@ -31,9 +31,15 @@ if platform_is "Darwin"; then
 	fi
 fi
 export PATH
-# check if vim is intalled; if so set it as manpager
-if command_exists "vim"; then
-	PAGER='col -bx | vim -c ":set ft=man nonu nolist" -R -'
+# check if most is intalled; if so set it as manpager
+if command_exists "most"; then
+	PAGER='most'
+fi
+# for MacOS - check if vim is intalled; if so set it as manpager
+if platform_is "Darwin"; then
+	if command_exists "vim"; then
+		PAGER='col -bx | vim -c ":set ft=man nonu nolist" -R -'
+	fi
 fi
 # }}}
 # *** zsh & term config *** {{{
