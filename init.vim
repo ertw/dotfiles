@@ -10,7 +10,7 @@ call plug#begin('~/.vim/plugged')
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'scrooloose/syntastic'
-Plug 'chazy/cscope_maps'
+" Plug 'chazy/cscope_maps'
 " Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 " Plug 'rhysd/vim-crystal'
 Plug 'morhetz/gruvbox'
@@ -35,6 +35,19 @@ call plug#end()
 " *** C config *** {{{
 " autogenerate ctags
 au BufWritePost *.c,*.cpp,*.h silent! !ctags -R &
+" }}}
+" *** cscope config *** {{{
+" use both cscope and ctag for 'ctrl-]', ':ta', and 'vim -t'
+set cscopetag
+" add any cscope database in current directory
+if filereadable("cscope.out")
+    cs add cscope.out  
+" else add the database pointed to by environment variable 
+elseif $CSCOPE_DB != ""
+    cs add $CSCOPE_DB
+endif
+" show msg when any other cscope db added
+set cscopeverbose  
 " }}}
 " *** Lisp config *** {{{
 " enable rainbow parens
@@ -93,6 +106,8 @@ inoremap jj <ESC>
 " map double-tap for shifted characters
 inoremap ;; :
 nnoremap ;; :
+" cscope - find all instances of symbol under cursor
+nnoremap ]] :cs find s <C-R>=expand("<cword>")<CR><CR>	
 " map mm to language-specific compile commands
 augroup CompileBinds
         autocmd!
