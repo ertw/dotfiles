@@ -1,5 +1,9 @@
 # vim:foldmethod=marker:foldlevel=0
 # *** Function definitions *** {{{
+# async source
+lazy_source () {
+    eval "$1 () { [ -f $2 ] && source $2 && $1 \$@ }"
+}
 # function to determine if a command exisits
 command_exists () {
     [[ -s "$1" ]]
@@ -28,8 +32,8 @@ fi
 # check if nvm is installed; if so set up env
 if command_exists "$HOME/.nvm/nvm.sh"; then
 	export NVM_DIR="$HOME/.nvm"
-	# async source in a subshell
-	(source $NVM_DIR/nvm.sh &)
+	# equivalent to: nvm() { . "$NVM_DIR/nvm.sh" ; nvm $@ ; }
+	lazy_source nvm $NVM_DIR/nvm.sh
 fi
 export PATH
 # check if most is intalled; if so set it as manpager
