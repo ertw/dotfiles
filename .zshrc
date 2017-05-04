@@ -2,7 +2,7 @@
 # *** Function definitions *** {{{
 # function to determine if a command exisits
 command_exists () {
-    type "$1" &> /dev/null ;
+    [[ -s "$1" ]]
 }
 # return bool for platform from uname:
 # FreeBSD, Darwin, Linux
@@ -24,11 +24,12 @@ if platform_is "Darwin"; then
 	path+=($HOME/Applications/racket/bin)
 	# rust
 	source $HOME/.cargo/env
-	# check if nvm is installed; if so set up env
-	if command_exists "$(brew --prefix nvm)/nvm.sh"; then
-		export NVM_DIR="$HOME/.nvm"
-		source $(brew --prefix nvm)/nvm.sh
-	fi
+fi
+# check if nvm is installed; if so set up env
+if command_exists "$HOME/.nvm/nvm.sh"; then
+	export NVM_DIR="$HOME/.nvm"
+	# async source in a subshell
+	(source $NVM_DIR/nvm.sh &)
 fi
 export PATH
 # check if most is intalled; if so set it as manpager
