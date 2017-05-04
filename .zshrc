@@ -37,12 +37,12 @@ if command_exists "$HOME/.nvm/nvm.sh"; then
 fi
 export PATH
 # check if most is intalled; if so set it as manpager
-if command_exists "most"; then
+if command_exists "$(which most)"; then
 	PAGER='most'
 fi
 # for MacOS - check if vim is intalled; if so set it as manpager
 if platform_is "Darwin"; then
-	if command_exists "vim"; then
+	if command_exists "$(which nvim)"; then
 		PAGER='col -bx | vim -c ":set ft=man nonu nolist" -R -'
 	fi
 fi
@@ -75,12 +75,12 @@ if platform_is "Darwin"; then
 		alias vim="$HOME/bin/nvim"
 	fi
 else
-	if command_exists "nvim"; then
+	if command_exists "$(which nvim)"; then
 		alias vim="nvim"
 	fi
 fi
 # aliases for remote connectivity
-if command_exists "mosh"; then
+if command_exists "$(which mosh)"; then
 	alias bsd="mosh --ssh=\"ssh -p 28674\" ertw@b.erik.tw"
 	alias lin="mosh --ssh=\"ssh -p 28673\" ertw@l.erik.tw"
 else
@@ -88,7 +88,7 @@ else
 	alias lin="ssh -p 28673 ertw@l.erik.tw"
 fi
 # fancy diff alias
-if command_exists "diff-so-fancy"; then
+if command_exists "$(which diff-so-fancy)"; then
 	alias gd="git diff --color | diff-so-fancy"
 fi
 # }}}
