@@ -66,6 +66,8 @@ alias db="lldb -s <(echo 'target stop-hook add --one-liner \"frame variable\"')"
 alias ccw="cc -Wall -Werror -Wextra -fsanitize=address"
 # alias to quickly cd to current project
 alias f="~/Documents/ft_printf"
+# debug compile flags
+alias ccw="cc -g -Wall -Werror -Wextra -fsanitize=address"
 # check if nvim is intalled; if so alias vim
 if platform_is "Darwin"; then
 	# homebrew alias
