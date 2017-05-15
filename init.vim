@@ -5,18 +5,20 @@ call plug#begin('~/.vim/plugged')
 "       \ 'for': 'fsharp',
 "       \ 'do':  'make fsautocomplete',
 "       \}
-" Plug 'elmcast/elm-vim'
+Plug 'elmcast/elm-vim'
 " Plug 'Valloric/YouCompleteMe'
+Plug 'sheerun/vim-polyglot'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'scrooloose/syntastic'
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'godlygeek/tabular'
-Plug 'plasticboy/vim-markdown'
-Plug 'rhysd/vim-crystal'
+" Plug 'plasticboy/vim-markdown'
+" Plug 'rhysd/vim-crystal'
 " Plug 'chazy/cscope_maps'
 " Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 " Plug 'rhysd/vim-crystal'
+Plug 'scrooloose/nerdtree'
 Plug 'morhetz/gruvbox'
 " Plug 'rust-lang/rust.vim'
 " Plug 'cespare/vim-toml'
@@ -31,7 +33,7 @@ Plug 'mklabs/split-term.vim'
 " Plug 'severin-lemaignan/vim-minimap'
 " Plug 'digitaltoad/vim-pug'
 " Plug 'cohama/lexima.vim'
-Plug 'elixir-lang/vim-elixir'
+" Plug 'elixir-lang/vim-elixir'
 " Plug 'Valloric/YouCompleteMe', { 'do': 'python ./install.py' }
 call plug#end()
 " }}}
@@ -57,6 +59,11 @@ set cscopeverbose
 " enable rainbow parens
 au VimEnter *.rkt RainbowParenthesesToggle
 " }}}
+" *** Markdown config *** {{{
+" enable markdown higlighting with polyglot
+autocmd BufNewFile,BufRead *.md set spell | set lbr | set nonu
+let g:markdown_fenced_languages = ['html', 'json', 'css', 'javascript', 'elm', 'vim']
+" }}}
 " OS detection
 if has("win64") || has("win32") || has("win16")
 	let g:os = "Windows"
@@ -75,6 +82,8 @@ let g:syntastic_rust_checkers = ['rustc']
 " eslint
 let g:syntastic_javascript_checkers = ['eslint']
 " elm
+let g:polyglot_disabled = ['elm']
+let g:elm_detailed_complete = 1
 let g:elm_syntastic_show_warnings = 1
 let g:elm_format_autosave = 1
 " racket - WARNING: ALLOWS ARBITRARY CODE EXECUTION!
