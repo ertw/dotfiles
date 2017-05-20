@@ -10,7 +10,8 @@ Plug 'elmcast/elm-vim'
 Plug 'sheerun/vim-polyglot'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
-Plug 'scrooloose/syntastic'
+" Plug 'scrooloose/syntastic'
+Plug 'w0rp/ale'
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'godlygeek/tabular'
 " Plug 'plasticboy/vim-markdown'
@@ -59,6 +60,12 @@ set cscopeverbose
 " enable rainbow parens
 au VimEnter *.rkt RainbowParenthesesToggle
 " }}}
+" *** Elm config *** {{{
+let g:polyglot_disabled = ['elm']
+let g:elm_format_autosave = 1
+let g:elm_detailed_complete = 1
+" }}}
+
 " *** Markdown config *** {{{
 " enable markdown higlighting with polyglot
 autocmd BufNewFile,BufRead *.md set spell | set lbr | set nonu
@@ -71,28 +78,29 @@ else
 	let g:os = system('uname')
 endif
 " }}}
-" *** Syntastic *** {{{
-" syntastic general
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 0
-" rust
-let g:syntastic_rust_checkers = ['rustc']
-" eslint
-let g:syntastic_javascript_checkers = ['eslint']
-" elm
-let g:polyglot_disabled = ['elm']
-let g:elm_detailed_complete = 1
-let g:elm_syntastic_show_warnings = 1
-let g:elm_format_autosave = 1
-" racket - WARNING: ALLOWS ARBITRARY CODE EXECUTION!
-let g:syntastic_enable_racket_racket_checker = 1
-" " pug lint
-" let g:syntastic_pug_checkers = ['pug_lint']
-"
-" gets evaluated last
+" *** ALE *** {{{
+" ALE general
+"let g:ale_statusline_format = ['⨉ %d', '⚠ %d', '⬥ ok']
 " }}}
+"" *** Syntastic *** {{{
+"" syntastic general
+"let g:syntastic_always_populate_loc_list = 1
+"let g:syntastic_auto_loc_list = 1
+"let g:syntastic_check_on_open = 1
+"let g:syntastic_check_on_wq = 0
+"" rust
+"let g:syntastic_rust_checkers = ['rustc']
+"" eslint
+"let g:syntastic_javascript_checkers = ['eslint']
+"" elm
+"let g:elm_syntastic_show_warnings = 1
+"" racket - WARNING: ALLOWS ARBITRARY CODE EXECUTION!
+"let g:syntastic_enable_racket_racket_checker = 1
+"" " pug lint
+"" let g:syntastic_pug_checkers = ['pug_lint']
+""
+"" gets evaluated last
+"" }}}
 " *** Editor *** {{{
 " line nums
 set number
