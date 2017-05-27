@@ -13,17 +13,17 @@ Plug 'vim-airline/vim-airline-themes'
 " Plug 'scrooloose/syntastic'
 Plug 'w0rp/ale'
 " Plug 'ctrlpvim/ctrlp.vim'
-Plug 'godlygeek/tabular'
+" Plug 'godlygeek/tabular'
 " Plug 'plasticboy/vim-markdown'
 " Plug 'rhysd/vim-crystal'
 " Plug 'chazy/cscope_maps'
 " Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 " Plug 'rhysd/vim-crystal'
-Plug 'scrooloose/nerdtree'
+"Plug 'scrooloose/nerdtree'
 Plug 'morhetz/gruvbox'
 " Plug 'rust-lang/rust.vim'
 " Plug 'cespare/vim-toml'
-Plug 'wlangstroth/vim-racket'
+" Plug 'wlangstroth/vim-racket'
 Plug 'kien/rainbow_parentheses.vim'
 " Plug 'mbbill/undotree'
 " Plug 'tpope/vim-fugitive'
@@ -43,19 +43,19 @@ call plug#end()
 " autogenerate ctags
 au BufWritePost *.c,*.cpp,*.h silent! !ctags -R &
 " }}}
-" *** cscope config *** {{{
-" use both cscope and ctag for 'ctrl-]', ':ta', and 'vim -t'
-set cscopetag
-" add any cscope database in current directory
-if filereadable("cscope.out")
-    cs add cscope.out  
-" else add the database pointed to by environment variable 
-elseif $CSCOPE_DB != ""
-    cs add $CSCOPE_DB
-endif
-" show msg when any other cscope db added
-set cscopeverbose  
-" }}}
+"" *** cscope config *** {{{
+"" use both cscope and ctag for 'ctrl-]', ':ta', and 'vim -t'
+"set cscopetag
+"" add any cscope database in current directory
+"if filereadable("cscope.out")
+"    cs add cscope.out  
+"" else add the database pointed to by environment variable 
+"elseif $CSCOPE_DB != ""
+"    cs add $CSCOPE_DB
+"endif
+"" show msg when any other cscope db added
+"set cscopeverbose  
+"" }}}
 " *** Lisp config *** {{{
 " enable rainbow parens
 au VimEnter *.rkt RainbowParenthesesToggle
@@ -125,7 +125,6 @@ set timeoutlen=180
 " map out keys to esc
 inoremap jj <ESC>
 " map double-tap for shifted characters
-inoremap ;; :
 nnoremap ;; :
 " cscope - find all instances of symbol under cursor
 nnoremap ]] :cs find s <C-R>=expand("<cword>")<CR><CR>	

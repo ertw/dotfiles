@@ -24,7 +24,7 @@ export TERM="screen-256color"
 #export TERM="xterm-256color"
 if platform_is "Darwin"; then
 	# append Homebrew to path
-	path+=(/Volumes/Storage/goinfre/$(whoami)/homebrew/bin)
+	export PATH=/Volumes/Storage/goinfre/$(whoami)/homebrew/bin:$PATH
 	# append Racket to path
 	path+=($HOME/Applications/racket/bin)
 	# rust
