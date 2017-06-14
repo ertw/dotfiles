@@ -20,7 +20,7 @@ platform_is () {
 }
 # }}}
 # *** Environment *** {{{
-export TERM="screen-256color"
+#export TERM="screen-256color"
 #export TERM="xterm-256color"
 if platform_is "Darwin"; then
 	# append Homebrew to path
