@@ -45,6 +45,10 @@ call plug#end()
 " autogenerate ctags
 au BufWritePost *.c,*.cpp,*.h silent! !ctags -R &
 " }}}
+" *** JS config *** {{{
+" autofix file
+autocmd bufwritepost *.js silent !standard --fix %
+" }}}
 "" *** cscope config *** {{{
 "" use both cscope and ctag for 'ctrl-]', ':ta', and 'vim -t'
 "set cscopetag
