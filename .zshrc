@@ -18,6 +18,11 @@ platform_is () {
 		return 1
 	fi
 }
+# make dir and enter it
+mkcd () {
+	mkdir "$1"
+	cd "$1"
+}
 # }}}
 # *** Environment *** {{{
 #export TERM="screen-256color"
