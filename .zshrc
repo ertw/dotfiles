@@ -30,23 +30,12 @@ mkcd () {
 if platform_is "Darwin"; then
 	# append Homebrew to path
 	export PATH=/Volumes/Storage/goinfre/$(whoami)/homebrew/bin:$PATH
-	# append Racket to path
-	path+=($HOME/Applications/racket/bin)
-	# rust
-	source $HOME/.cargo/env
-fi
-# check if nvm is installed; if so set up env
-if command_exists "$HOME/.nvm/nvm.sh"; then
-	export NVM_DIR="$HOME/.nvm"
-	# equivalent to: nvm() { . "$NVM_DIR/nvm.sh" ; nvm $@ ; }
-	lazy_source nvm $NVM_DIR/nvm.sh
 fi
 # check if asdf is installed; if so source it
 if command_exists "$HOME/.asdf/asdf.sh"; then
 	source $HOME/.asdf/asdf.sh
 #	source $HOME/.asdf/completions/asdf.bash
 fi
-export PATH
 # check if most is intalled; if so set it as manpager
 if command_exists "$(which most)"; then
 	PAGER='most'
