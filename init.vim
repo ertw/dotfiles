@@ -6,6 +6,12 @@ call plug#begin('~/.vim/plugged')
 "       \ 'do':  'make fsautocomplete',
 "       \}
 Plug 'elmcast/elm-vim'
+"Plug 'Valloric/YouCompleteMe'
+"Plug 'ervandew/supertab'
+Plug 'Rip-Rip/clang_complete'
+Plug 'SirVer/ultisnips'
+Plug 'honza/vim-snippets'
+Plug 'rhysd/vim-clang-format'
 " Plug 'Valloric/YouCompleteMe'
 Plug 'sheerun/vim-polyglot'
 Plug 'vim-airline/vim-airline'
@@ -32,6 +38,7 @@ Plug 'kien/rainbow_parentheses.vim'
 " Plug 'critiqjo/lldb.nvim'
 Plug 'spolu/dwm.vim'
 Plug 'mklabs/split-term.vim'
+Plug '2072/PHP-Indenting-for-VIm'
 " Plug 'terryma/vim-multiple-cursors'
 " Plug 'severin-lemaignan/vim-minimap'
 " Plug 'digitaltoad/vim-pug'
@@ -43,7 +50,18 @@ call plug#end()
 " *** Language & OS specific config *** {{{
 " *** C config *** {{{
 " autogenerate ctags
-au BufWritePost *.c,*.cpp,*.h silent! !ctags -R &
+au BufWritePost *.c,*.cpp,*.h,*.hpp silent! !ctags -R &
+" }}}
+" *** C++ config *** {{{
+" run clang-format on save
+autocmd FileType cpp,hpp ClangFormatAutoEnable
+" clanc_complete plugin options
+let g:clang_library_path = "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/"
+" ClangFormat plugin options
+let g:clang_format#code_style = "llvm"
+"let g:clang_format#style_options = {
+"	    \ "UseTab" : "Never",
+"            \ "Standard" : "C++11"}
 " }}}
 " *** JS config *** {{{
 " autofix file
@@ -87,6 +105,10 @@ endif
 " *** ALE *** {{{
 " ALE general
 "let g:ale_statusline_format = ['⨉ %d', '⚠ %d', '⬥ ok']
+" use cpplint for fixing cpp files
+"let g:ale_fixers = {'elm': ['elm-format-0.18',],}
+" run ale fixers on save
+let g:ale_fix_on_save = 1
 " }}}
 "" *** Syntastic *** {{{
 "" syntastic general
@@ -137,7 +159,7 @@ nnoremap ]] :cs find s <C-R>=expand("<cword>")<CR><CR>
 " map mm to language-specific compile commands
 augroup CompileBinds
         autocmd!
-        autocmd FileType c nnoremap mm :make<CR>
+        autocmd FileType c,cpp nnoremap mm :make<CR>
         autocmd FileType elixir nnoremap mm :!mix compile<CR>
 augroup End
 " }}}

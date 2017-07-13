@@ -68,6 +68,8 @@ alias ccw="cc -Wall -Werror -Wextra -fsanitize=address"
 alias f="~/Documents/ft_printf"
 # debug compile flags
 alias ccw="cc -g -Wall -Werror -Wextra -fsanitize=address"
+# push to all remotes
+alias gpa="git remote | xargs -L1 git push --all"
 # check if nvim is intalled; if so alias vim
 if platform_is "Darwin"; then
 	# homebrew alias
