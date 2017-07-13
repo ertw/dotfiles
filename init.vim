@@ -56,7 +56,11 @@ au BufWritePost *.c,*.cpp,*.h,*.hpp silent! !ctags -R &
 " run clang-format on save
 autocmd FileType cpp,hpp ClangFormatAutoEnable
 " clanc_complete plugin options
-" let g:clang_library_path = '/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/'
+" set clang path for MacOS.  Comparison with 'D' instead of 'Darwin' because I
+" don't know how to chomp newlines :( 
+if system('uname')[0] ==? 'D'
+	let g:clang_library_path = '/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/'
+endif
 " ClangFormat plugin options
 let g:clang_format#code_style = 'llvm'
 "let g:clang_format#style_options = {
