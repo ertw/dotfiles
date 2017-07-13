@@ -56,12 +56,12 @@ au BufWritePost *.c,*.cpp,*.h,*.hpp silent! !ctags -R &
 " run clang-format on save
 autocmd FileType cpp,hpp ClangFormatAutoEnable
 " clanc_complete plugin options
-let g:clang_library_path = "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/"
+" let g:clang_library_path = '/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/'
 " ClangFormat plugin options
-let g:clang_format#code_style = "llvm"
+let g:clang_format#code_style = 'llvm'
 "let g:clang_format#style_options = {
-"	    \ "UseTab" : "Never",
-"            \ "Standard" : "C++11"}
+"	    \ 'UseTab' : 'Never',
+"            \ 'Standard' : 'C++11'}
 " }}}
 " *** JS config *** {{{
 " autofix file
