@@ -78,6 +78,10 @@ if platform_is "Darwin"; then
 	if command_exists "$HOME/bin/nvim"; then
 		alias vim="$HOME/bin/nvim"
 	fi
+	# compile for starfleet
+	if command_exists "$HOME/bin/compile"; then
+		alias compile="$HOME/bin/compile"
+	fi
 else
 	if command_exists "$(which nvim)"; then
 		alias vim="nvim"

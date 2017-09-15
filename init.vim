@@ -8,15 +8,15 @@ call plug#begin('~/.vim/plugged')
 Plug 'elmcast/elm-vim'
 "Plug 'Valloric/YouCompleteMe'
 "Plug 'ervandew/supertab'
-Plug 'Rip-Rip/clang_complete'
-Plug 'SirVer/ultisnips'
-Plug 'honza/vim-snippets'
+" Plug 'Rip-Rip/clang_complete'
+"Plug 'SirVer/ultisnips'
+"Plug 'honza/vim-snippets'
 Plug 'rhysd/vim-clang-format'
 " Plug 'Valloric/YouCompleteMe'
 Plug 'sheerun/vim-polyglot'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
-Plug 'vim-scripts/closetag.vim'
+"Plug 'vim-scripts/closetag.vim'
 Plug 'terryma/vim-multiple-cursors'
 " Plug 'scrooloose/syntastic'
 Plug 'w0rp/ale'
@@ -54,7 +54,7 @@ au BufWritePost *.c,*.cpp,*.h,*.hpp silent! !ctags -R &
 " }}}
 " *** C++ config *** {{{
 " run clang-format on save
-autocmd FileType cpp,hpp ClangFormatAutoEnable
+autocmd FileType c,h,cpp,hpp ClangFormatAutoEnable
 " clanc_complete plugin options
 " set clang path for MacOS.  Comparison with 'D' instead of 'Darwin' because I
 " don't know how to chomp newlines :( 
@@ -113,6 +113,11 @@ endif
 "let g:ale_fixers = {'elm': ['elm-format-0.18',],}
 " run ale fixers on save
 let g:ale_fix_on_save = 1
+" use autopep8
+"let g:ale_fixers = {'python': ['flake8']}
+"let g:ale_python_flake8_executable = 'python'
+"let g:ale_python_flake8_options = '-m flake8'
+"let g:ale_python_autopep8_options = '--aggressive'
 " }}}
 "" *** Syntastic *** {{{
 "" syntastic general
