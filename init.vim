@@ -6,6 +6,8 @@ call plug#begin('~/.vim/plugged')
 "       \ 'do':  'make fsautocomplete',
 "       \}
 Plug 'elmcast/elm-vim'
+Plug 'davejlong/cf-utils.vim'
+"Plug 'ernstvanderlinden/vim-coldfusion'
 "Plug 'Valloric/YouCompleteMe'
 "Plug 'ervandew/supertab'
 " Plug 'Rip-Rip/clang_complete'
