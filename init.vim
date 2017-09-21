@@ -92,6 +92,7 @@ au VimEnter *.rkt RainbowParenthesesToggle
 let g:polyglot_disabled = ['elm']
 let g:elm_format_autosave = 1
 let g:elm_detailed_complete = 1
+au FileType elm setl sw=4 sts=4 et
 " }}}
 
 " *** Markdown config *** {{{
