@@ -7,22 +7,22 @@ call plug#begin('~/.vim/plugged')
 "       \}
 Plug 'elmcast/elm-vim'
 Plug 'davejlong/cf-utils.vim'
-"Plug 'ernstvanderlinden/vim-coldfusion'
-"Plug 'Valloric/YouCompleteMe'
-"Plug 'ervandew/supertab'
+" Plug 'ctrlpvim/ctrlp.vim'
+" Plug 'ernstvanderlinden/vim-coldfusion'
+" Plug 'Valloric/YouCompleteMe'
+" Plug 'ervandew/supertab'
 " Plug 'Rip-Rip/clang_complete'
-"Plug 'SirVer/ultisnips'
-"Plug 'honza/vim-snippets'
+" Plug 'SirVer/ultisnips'
+" Plug 'honza/vim-snippets'
 Plug 'rhysd/vim-clang-format'
 " Plug 'Valloric/YouCompleteMe'
 Plug 'sheerun/vim-polyglot'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
-"Plug 'vim-scripts/closetag.vim'
-Plug 'terryma/vim-multiple-cursors'
+" Plug 'vim-scripts/closetag.vim'
+" Plug 'terryma/vim-multiple-cursors'
 " Plug 'scrooloose/syntastic'
 Plug 'w0rp/ale'
-" Plug 'ctrlpvim/ctrlp.vim'
 " Plug 'godlygeek/tabular'
 " Plug 'plasticboy/vim-markdown'
 " Plug 'rhysd/vim-crystal'
@@ -46,7 +46,6 @@ Plug '2072/PHP-Indenting-for-VIm'
 " Plug 'digitaltoad/vim-pug'
 " Plug 'cohama/lexima.vim'
 " Plug 'elixir-lang/vim-elixir'
-" Plug 'Valloric/YouCompleteMe', { 'do': 'python ./install.py' }
 call plug#end()
 " }}}
 " *** Language & OS specific config *** {{{
@@ -59,7 +58,7 @@ au BufWritePost *.c,*.cpp,*.h,*.hpp silent! !ctags -R &
 autocmd FileType c,h,cpp,hpp ClangFormatAutoEnable
 " clanc_complete plugin options
 " set clang path for MacOS.  Comparison with 'D' instead of 'Darwin' because I
-" don't know how to chomp newlines :( 
+" don't know how to chomp newlines :(
 if system('uname')[0] ==? 'D'
 	let g:clang_library_path = '/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/'
 endif
@@ -78,13 +77,13 @@ autocmd bufwritepost *.js silent !standard --fix %
 "set cscopetag
 "" add any cscope database in current directory
 "if filereadable("cscope.out")
-"    cs add cscope.out  
-"" else add the database pointed to by environment variable 
+"    cs add cscope.out
+"" else add the database pointed to by environment variable
 "elseif $CSCOPE_DB != ""
 "    cs add $CSCOPE_DB
 "endif
 "" show msg when any other cscope db added
-"set cscopeverbose  
+"set cscopeverbose
 "" }}}
 " *** Lisp config *** {{{
 " enable rainbow parens
@@ -150,7 +149,7 @@ set mouse=a
 map Q <Nop>
 " jump to the last position when  reopening a file
 if has("autocmd")
-  au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
+	au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
 endif
 " }}}
 " *** Search *** {{{
@@ -158,6 +157,10 @@ endif
 nnoremap // :nohlsearch<CR>
 " search as I type
 set incsearch
+" ignore some file extensions
+set wildignore+=*~,*.swp,*.tmp,*.a,*.out,.DS_Store,*.gif,*.bmp,*.png,*.psd,*.bin
+" case insensitive searching
+set ignorecase
 " }}}
 " *** Mappings *** {{{
 " set doubleclick timeout
@@ -167,12 +170,12 @@ inoremap jj <ESC>
 " map double-tap for shifted characters
 nnoremap ;; :
 " cscope - find all instances of symbol under cursor
-nnoremap ]] :cs find s <C-R>=expand("<cword>")<CR><CR>	
+nnoremap ]] :cs find s <C-R>=expand("<cword>")<CR><CR>
 " map mm to language-specific compile commands
 augroup CompileBinds
-        autocmd!
-        autocmd FileType c,cpp nnoremap mm :make<CR>
-        autocmd FileType elixir nnoremap mm :!mix compile<CR>
+	autocmd!
+	autocmd FileType c,cpp nnoremap mm :make<CR>
+	autocmd FileType elixir nnoremap mm :!mix compile<CR>
 augroup End
 " }}}
 " *** Cosmetics *** {{{
