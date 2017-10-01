@@ -24,5 +24,6 @@ else
 fi
 }
 link_dotfile "$HOME" ".zshrc"
+link_dotfile "$HOME" ".gitconfig"
 link_dotfile "$HOME/.config/nvim" "init.vim"
 link_dotfile "$HOME/.ssh" "authorized_keys"
