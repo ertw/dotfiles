@@ -141,8 +141,15 @@ let g:ale_fix_on_save = 1
 "" gets evaluated last
 "" }}}
 " *** Editor *** {{{
-" line nums
-set number
+" rel line nums
+set number relativenumber
+" rel numbers in normal, absolute numbers in insert
+augroup numbertoggle
+	autocmd!
+	autocmd BufEnter,FocusGained,InsertLeave * set relativenumber
+	autocmd BufLeave,FocusLost,InsertEnter   * set norelativenumber
+augroup END
+
 " mouse
 set mouse=a
 " kill Ex mode
