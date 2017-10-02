@@ -1,51 +1,20 @@
+" Designed for neovim, also works (okayish) with vim8
 " vim:foldmethod=marker:foldlevel=0
 " *** Plug *** {{{
 call plug#begin('~/.vim/plugged')
-" Plug 'fsharp/vim-fsharp', {
-"       \ 'for': 'fsharp',
-"       \ 'do':  'make fsautocomplete',
-"       \}
-Plug 'elmcast/elm-vim'
-Plug 'davejlong/cf-utils.vim'
-" Plug 'ctrlpvim/ctrlp.vim'
-" Plug 'ernstvanderlinden/vim-coldfusion'
-" Plug 'Valloric/YouCompleteMe'
-" Plug 'ervandew/supertab'
-" Plug 'Rip-Rip/clang_complete'
-" Plug 'SirVer/ultisnips'
-" Plug 'honza/vim-snippets'
-Plug 'rhysd/vim-clang-format'
-" Plug 'Valloric/YouCompleteMe'
-Plug 'sheerun/vim-polyglot'
-Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
-" Plug 'vim-scripts/closetag.vim'
-" Plug 'terryma/vim-multiple-cursors'
-" Plug 'scrooloose/syntastic'
-Plug 'w0rp/ale'
-" Plug 'godlygeek/tabular'
-" Plug 'plasticboy/vim-markdown'
-" Plug 'rhysd/vim-crystal'
-" Plug 'chazy/cscope_maps'
-" Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-" Plug 'rhysd/vim-crystal'
-"Plug 'scrooloose/nerdtree'
-Plug 'morhetz/gruvbox'
-" Plug 'rust-lang/rust.vim'
-" Plug 'cespare/vim-toml'
-" Plug 'wlangstroth/vim-racket'
-Plug 'kien/rainbow_parentheses.vim'
-" Plug 'mbbill/undotree'
-" Plug 'tpope/vim-fugitive'
-" Plug 'critiqjo/lldb.nvim'
-Plug 'spolu/dwm.vim'
-Plug 'mklabs/split-term.vim'
-Plug '2072/PHP-Indenting-for-VIm'
-" Plug 'terryma/vim-multiple-cursors'
-" Plug 'severin-lemaignan/vim-minimap'
-" Plug 'digitaltoad/vim-pug'
-" Plug 'cohama/lexima.vim'
-" Plug 'elixir-lang/vim-elixir'
+Plug 'ekalinin/Dockerfile.vim'			" dockerfile
+Plug 'elmcast/elm-vim'				" elm
+Plug 'davejlong/cf-utils.vim'			" coldfusion / cfmml
+Plug 'rhysd/vim-clang-format'			" run clang-format for C / C++
+Plug 'sheerun/vim-polyglot'			" language pack
+Plug 'vim-airline/vim-airline'			" airline bar
+Plug 'vim-airline/vim-airline-themes'		" airline themes
+Plug 'w0rp/ale'					" linter / fixer
+Plug 'morhetz/gruvbox'				" vim theme
+Plug 'kien/rainbow_parentheses.vim'		" rainbow parens for lisp
+Plug 'spolu/dwm.vim'				" window manager
+Plug 'mklabs/split-term.vim'			" better terminal for nvim, use with :Term
+Plug '2072/PHP-Indenting-for-VIm'		" PHP indentation
 call plug#end()
 " }}}
 " *** Language & OS specific config *** {{{
@@ -110,36 +79,8 @@ endif
 " }}}
 " *** ALE *** {{{
 " ALE general
-"let g:ale_statusline_format = ['⨉ %d', '⚠ %d', '⬥ ok']
-" use cpplint for fixing cpp files
-"let g:ale_fixers = {'elm': ['elm-format-0.18',],}
-" run ale fixers on save
 let g:ale_fix_on_save = 1
-" use autopep8
-"let g:ale_fixers = {'python': ['flake8']}
-"let g:ale_python_flake8_executable = 'python'
-"let g:ale_python_flake8_options = '-m flake8'
-"let g:ale_python_autopep8_options = '--aggressive'
 " }}}
-"" *** Syntastic *** {{{
-"" syntastic general
-"let g:syntastic_always_populate_loc_list = 1
-"let g:syntastic_auto_loc_list = 1
-"let g:syntastic_check_on_open = 1
-"let g:syntastic_check_on_wq = 0
-"" rust
-"let g:syntastic_rust_checkers = ['rustc']
-"" eslint
-"let g:syntastic_javascript_checkers = ['eslint']
-"" elm
-"let g:elm_syntastic_show_warnings = 1
-"" racket - WARNING: ALLOWS ARBITRARY CODE EXECUTION!
-"let g:syntastic_enable_racket_racket_checker = 1
-"" " pug lint
-"" let g:syntastic_pug_checkers = ['pug_lint']
-""
-"" gets evaluated last
-"" }}}
 " *** Editor *** {{{
 " rel line nums
 set number relativenumber
@@ -199,6 +140,7 @@ augroup BgHighlight
 	autocmd WinEnter * set cul
 	autocmd WinLeave * set nocul
 augroup END
+" change cursorline for insert mode
 augroup CulHighlight
 	autocmd!
 	autocmd InsertEnter * hi cursorline guibg=Black
