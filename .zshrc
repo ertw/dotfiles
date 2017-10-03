@@ -89,11 +89,9 @@ else
 fi
 # aliases for remote connectivity
 if command_exists "$(which mosh)"; then
-	alias bsd="mosh --ssh=\"ssh -p 28674\" ertw@b.erik.tw"
-	alias lin="mosh --ssh=\"ssh -p 28673\" ertw@l.erik.tw"
+	alias lin="mosh --ssh=\"ssh -p 28673\" ertw@v.erik.tw"
 else
-	alias bsd="ssh -p 28674 ertw@b.erik.tw"
-	alias lin="ssh -p 28673 ertw@l.erik.tw"
+	alias lin="ssh -p 28673 ertw@v.erik.tw"
 fi
 # fancy diff alias
 if command_exists "$(which diff-so-fancy)"; then
