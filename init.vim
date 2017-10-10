@@ -2,6 +2,7 @@
 " vim:foldmethod=marker:foldlevel=0
 " *** Plug *** {{{
 call plug#begin('~/.vim/plugged')
+"Plug 'fsharp/vim-fsharp'			" fsharp
 Plug 'ekalinin/Dockerfile.vim'			" dockerfile
 Plug 'elmcast/elm-vim'				" elm
 Plug 'davejlong/cf-utils.vim'			" coldfusion / cfmml
