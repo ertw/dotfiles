@@ -129,10 +129,10 @@ augroup End
 " }}}
 " *** Cosmetics *** {{{
 " *** Colorscheme *** {{{
-colorscheme gruvbox
+"colorscheme gruvbox
 set background=dark
-let g:gruvbox_contrast_light='soft'
-let g:gruvbox_contrast_dark='soft'
+"let g:gruvbox_contrast_light='soft'
+"let g:gruvbox_contrast_dark='soft'
 " }}}"only highlight line in the active pane
 " horizontal line on cursor
 set cursorline
