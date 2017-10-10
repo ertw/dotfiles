@@ -8,10 +8,10 @@ Plug 'elmcast/elm-vim'				" elm
 Plug 'davejlong/cf-utils.vim'			" coldfusion / cfmml
 Plug 'rhysd/vim-clang-format'			" run clang-format for C / C++
 Plug 'sheerun/vim-polyglot'			" language pack
-Plug 'vim-airline/vim-airline'			" airline bar
-Plug 'vim-airline/vim-airline-themes'		" airline themes
+"Plug 'vim-airline/vim-airline'			" airline bar
+"Plug 'vim-airline/vim-airline-themes'		" airline themes
 Plug 'w0rp/ale'					" linter / fixer
-Plug 'morhetz/gruvbox'				" vim theme
+"Plug 'morhetz/gruvbox'				" vim theme
 Plug 'kien/rainbow_parentheses.vim'		" rainbow parens for lisp
 Plug 'spolu/dwm.vim'				" window manager
 Plug 'mklabs/split-term.vim'			" better terminal for nvim, use with :Term
