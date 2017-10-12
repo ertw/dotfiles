@@ -23,6 +23,8 @@ call plug#end()
 " autogenerate ctags
 au BufWritePost *.c,*.cpp,*.h,*.hpp silent! !ctags -R &
 " }}}
+" set csharp to use space indentation
+autocmd FileType cs setlocal shiftwidth=4 tabstop=4 expandtab
 " *** C++ config *** {{{
 " run clang-format on save
 autocmd FileType c,h,cpp,hpp ClangFormatAutoEnable
