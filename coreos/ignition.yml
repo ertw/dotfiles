@@ -1,5 +1,38 @@
+etcd:
+  version:                     "3.0.15"
+  name:                        "{HOSTNAME}"
+  advertise_client_urls:       "http://{PRIVATE_IPV4}:2379"
+  initial_advertise_peer_urls: "http://{PRIVATE_IPV4}:2380"
+  listen_client_urls:          "http://0.0.0.0:2379"
+  listen_peer_urls:            "http://{PRIVATE_IPV4}:2380"
+  initial_cluster:             "{HOSTNAME}=http://{PRIVATE_IPV4}:2380"
+update:
+  group:  "alpha"
+storage:
+  filesystems:
+    - name: filesystem1
+      mount:
+        device: /dev/disk/by-partlabel/ROOT
+        format: btrfs
+        wipe_filesystem: true
+        label: ROOT
+        options: compress=lzo
+  files:
+    - path: /etc/ssh/sshd_config
+      filesystem: root
+      mode: 0600
+      contents:
+        inline: |
+          # Use most defaults for sshd configuration.
+          UsePrivilegeSeparation sandbox
+          Subsystem sftp internal-sftp
+          UseDNS no
+
+          PermitRootLogin no
+          AllowUsers core
+          AuthenticationMethods publickey
 passwd:
   users:
     - name: core
       ssh_authorized_keys:
-        - ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQC9zB84eScgHlu/zzBVWLCh19dbz2oJ6jpw5sEzbV13Wfu6Y/RlgFukbEzwUpA1aT19AVkrg87V2g8PBnT0+XHd0XXrJr8Ztq+a0E9zBNdas0QyLeDxYiXmG3WlCBYwSE/FmkAnMm22lVel66XgRK5Nqd61LD1ROEv4FyP1drZj37larvLiRVi65p44ljz+w1nr4Spebm7GDo7QwN0BqQcYYMXJuqwFGoG9vmuAAkc8frfKgVe04CLNQzcWHLJhOE0N1T1L4h5Avok7tstHyV931XsyLdIMeSnG8h6llYP+2Wzqm8+FTnhE5zVMA13dJ3/yYCbl1sAKlT8Q9cQTsOeBd5lPWHdoiM9WKKW4QKxOkDFT209sRC8YeGCqUE3be7fWjTnw/uetUa4pv8jBN+y1V4H5KNrR5xOOao8DCUprY/PMB8DcibklLfbraCW7SPEnCblPeWeQ1XQghmFje04/RFeRBOKhSBposZrM39EdAuD4eEZ+gb4q9N0fVnI5NkkFQjgC6JApXs0b+SOU+uNJIxQ4NNyxN+PKmRItWsPnkrjf3F9ecXA7uaSo5Cj6bcaUodUNyaw68lx6cDCIBperuG+PF96S8K6eB6gqw6B8VXOXPa9tYcp/oUz4o1SaGhjF006PqOIXvtR189kzKKjBF+KLYpeKVZ8IBPSqExQUkQ== erik@himself.in
+        - ssh -rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQC9zB84eScgHlu/zzBVWLCh19dbz2oJ6jpw5sEzbV13Wfu6Y/RlgFukbEzwUpA1aT19AVkrg87V2g8PBnT0+XHd0XXrJr8Ztq+a0E9zBNdas0QyLeDxYiXmG3WlCBYwSE/FmkAnMm22lVel66XgRK5Nqd61LD1ROEv4FyP1drZj37larvLiRVi65p44ljz+w1nr4Spebm7GDo7QwN0BqQcYYMXJuqwFGoG9vmuAAkc8frfKgVe04CLNQzcWHLJhOE0N1T1L4h5Avok7tstHyV931XsyLdIMeSnG8h6llYP+2Wzqm8+FTnhE5zVMA13dJ3/yYCbl1sAKlT8Q9cQTsOeBd5lPWHdoiM9WKKW4QKxOkDFT209sRC8YeGCqUE3be7fWjTnw/uetUa4pv8jBN+y1V4H5KNrR5xOOao8DCUprY/PMB8DcibklLfbraCW7SPEnCblPeWeQ1XQghmFje04/RFeRBOKhSBposZrM39EdAuD4eEZ+gb4q9N0fVnI5NkkFQjgC6JApXs0b+SOU+uNJIxQ4NNyxN+PKmRItWsPnkrjf3F9ecXA7uaSo5Cj6bcaUodUNyaw68lx6cDCIBperuG+PF96S8K6eB6gqw6B8VXOXPa9tYcp/oUz4o1SaGhjF006PqOIXvtR189kzKKjBF+KLYpeKVZ8IBPSqExQUkQ== erik@himself.in
