@@ -16,7 +16,6 @@ storage:
         format: btrfs
         wipe_filesystem: true
         label: ROOT
-        options: compress=lzo
   files:
     - path: /etc/ssh/sshd_config
       filesystem: root
