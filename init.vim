@@ -5,7 +5,7 @@ call plug#begin('~/.vim/plugged')
 "Plug 'fsharp/vim-fsharp'			" fsharp
 Plug 'ekalinin/Dockerfile.vim'			" dockerfile
 Plug 'elmcast/elm-vim'				" elm
-Plug 'davejlong/cf-utils.vim'			" coldfusion / cfmml
+"Plug 'davejlong/cf-utils.vim'			" coldfusion / cfmml
 Plug 'rhysd/vim-clang-format'			" run clang-format for C / C++
 Plug 'sheerun/vim-polyglot'			" language pack
 "Plug 'vim-airline/vim-airline'			" airline bar
@@ -15,7 +15,8 @@ Plug 'w0rp/ale'					" linter / fixer
 Plug 'kien/rainbow_parentheses.vim'		" rainbow parens for lisp
 Plug 'spolu/dwm.vim'				" window manager
 Plug 'mklabs/split-term.vim'			" better terminal for nvim, use with :Term
-Plug '2072/PHP-Indenting-for-VIm'		" PHP indentation
+"Plug '2072/PHP-Indenting-for-VIm'		" PHP indentation
+Plug 'nightsense/office'			" For dark & pastel colorscheme
 call plug#end()
 " }}}
 " *** Language & OS specific config *** {{{
@@ -134,7 +135,8 @@ augroup End
 " *** Cosmetics *** {{{
 " *** Colorscheme *** {{{
 "colorscheme gruvbox
-set background=dark
+colorscheme office-dark
+"set background=dark
 "let g:gruvbox_contrast_light='soft'
 "let g:gruvbox_contrast_dark='soft'
 " }}}"only highlight line in the active pane
