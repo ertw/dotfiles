@@ -5,15 +5,17 @@ call plug#begin('~/.vim/plugged')
 "Plug 'fsharp/vim-fsharp'			" fsharp
 Plug 'ekalinin/Dockerfile.vim'			" dockerfile
 Plug 'elmcast/elm-vim'				" elm
+Plug 'editorconfig/editorconfig-vim'		"EditorConfig
 "Plug 'davejlong/cf-utils.vim'			" coldfusion / cfmml
 Plug 'rhysd/vim-clang-format'			" run clang-format for C / C++
 Plug 'sheerun/vim-polyglot'			" language pack
+Plug 'mattn/emmet-vim'				" emmet
 "Plug 'vim-airline/vim-airline'			" airline bar
 "Plug 'vim-airline/vim-airline-themes'		" airline themes
 Plug 'w0rp/ale'					" linter / fixer
 "Plug 'morhetz/gruvbox'				" vim theme
 Plug 'kien/rainbow_parentheses.vim'		" rainbow parens for lisp
-Plug 'spolu/dwm.vim'				" window manager
+"Plug 'spolu/dwm.vim'				" window manager
 Plug 'mklabs/split-term.vim'			" better terminal for nvim, use with :Term
 "Plug '2072/PHP-Indenting-for-VIm'		" PHP indentation
 Plug 'nightsense/office'			" For dark & pastel colorscheme
@@ -25,9 +27,9 @@ call plug#end()
 au BufWritePost *.c,*.cpp,*.h,*.hpp silent! !ctags -R &
 " }}}
 " set csharp to use space indentation
-autocmd FileType cs setlocal shiftwidth=4 tabstop=4 expandtab
+"autocmd FileType cs setlocal shiftwidth=4 tabstop=4 expandtab
 " set html, pug to use space indentation
-autocmd FileType html,pug setlocal shiftwidth=2 tabstop=2 expandtab
+"autocmd FileType html,pug,css setlocal shiftwidth=2 tabstop=2 expandtab
 " *** C++ config *** {{{
 " run clang-format on save
 autocmd FileType c,h,cpp,hpp ClangFormatAutoEnable
@@ -88,6 +90,8 @@ endif
 let g:ale_fix_on_save = 1
 " }}}
 " *** Editor *** {{{
+" set emmet leader key
+let g:user_emmet_leader_key=','
 " rel line nums
 set number relativenumber
 " rel numbers in normal, absolute numbers in insert
@@ -101,6 +105,8 @@ augroup END
 set mouse=a
 " kill Ex mode
 map Q <Nop>
+" set minimum window height to 0
+set wmh=0
 " jump to the last position when  reopening a file
 if has("autocmd")
 	au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
@@ -122,9 +128,12 @@ set timeoutlen=180
 " map out keys to esc
 inoremap jj <ESC>
 " map double-tap for shifted characters
-nnoremap ;; :
+nnoremap ; :
 " cscope - find all instances of symbol under cursor
 nnoremap ]] :cs find s <C-R>=expand("<cword>")<CR><CR>
+" mapping for moving between panes
+map <C-J> <C-W>j<C-W>_
+map <C-K> <C-W>k<C-W>_
 " map mm to language-specific compile commands
 augroup CompileBinds
 	autocmd!
