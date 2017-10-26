@@ -6,6 +6,8 @@ call plug#begin('~/.vim/plugged')
 Plug 'ekalinin/Dockerfile.vim'			" dockerfile
 Plug 'elmcast/elm-vim'				" elm
 Plug 'editorconfig/editorconfig-vim'		"EditorConfig
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'junegunn/fzf.vim'				" fuzzy finding
 "Plug 'davejlong/cf-utils.vim'			" coldfusion / cfmml
 Plug 'rhysd/vim-clang-format'			" run clang-format for C / C++
 Plug 'sheerun/vim-polyglot'			" language pack
@@ -13,7 +15,6 @@ Plug 'mattn/emmet-vim'				" emmet
 "Plug 'vim-airline/vim-airline'			" airline bar
 "Plug 'vim-airline/vim-airline-themes'		" airline themes
 Plug 'w0rp/ale'					" linter / fixer
-"Plug 'morhetz/gruvbox'				" vim theme
 Plug 'kien/rainbow_parentheses.vim'		" rainbow parens for lisp
 "Plug 'spolu/dwm.vim'				" window manager
 Plug 'mklabs/split-term.vim'			" better terminal for nvim, use with :Term
@@ -26,10 +27,6 @@ call plug#end()
 " autogenerate ctags
 au BufWritePost *.c,*.cpp,*.h,*.hpp silent! !ctags -R &
 " }}}
-" set csharp to use space indentation
-"autocmd FileType cs setlocal shiftwidth=4 tabstop=4 expandtab
-" set html, pug to use space indentation
-"autocmd FileType html,pug,css setlocal shiftwidth=2 tabstop=2 expandtab
 " *** C++ config *** {{{
 " run clang-format on save
 autocmd FileType c,h,cpp,hpp ClangFormatAutoEnable
