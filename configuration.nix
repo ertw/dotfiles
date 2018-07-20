@@ -5,64 +5,17 @@
 { config, pkgs, ... }:
 
 {
-imports =
-  [ # Include the results of the hardware scan.
-    ./hardware-configuration.nix
-  ];
+  imports =
+    [ # Include the results of the hardware scan.
+      ./hardware-configuration.nix
+    ];
 
+  # Use the systemd-boot EFI boot loader.
+  boot.loader.systemd-boot.enable = true;
+  boot.loader.efi.canTouchEfiVariables = true;
 
-  # List packages installed in system profile. To search by name, run:
-  # $ nix-env -qaP | grep wget
-
-programs.zsh.enable = true;
-
-system.autoUpgrade.enable = true;
-
-services.postgresql.enable = true;
-
-environment.systemPackages = with pkgs; [
-	i3status dmenu firefox atom xorg.xbacklight
-  	connman openvpn arp-scan pcmanfm p7zip nmap inkscape
-  	pinta icedtea8_web htop openssh sshfsFuse freerdp
-  	powertop git busybox grc flpsed zlib libxml2
-  	python phantomjs2 iotop trash-cli mtr zeal zsh
-  	stack ghc cabal-install openssl gcc elmPackages.elm
-  	redshift gparted ntfs3g icedtea8_web shutter neovim
-  	minicom termite powerline-fonts gnumake clang zathura
-	calibre rustc cargo transmission python35Packages.slackclient 
-	pltScheme ruby cmake mosh autorandr arandr
-#	 chromiumDev 
-];
-
-fonts = {
-     enableFontDir = true;
-     enableGhostscriptFonts = true;
-     fonts = with pkgs; [
-       corefonts  # Micrsoft free fonts
-       fantasque-sans-mono  # monospaced
-       ubuntu_font_family  # Ubuntu fonts
-       unifont # some international languages
-     ];
-   };
-
-nixpkgs.config = {
-  allowUnfree = true;
-  firefox = {
-  };
-#  chromium = {
-#    enablePepperPDF = true;
-#  };
-};
-
-  # Use the gummiboot efi boot loader.
-boot.loader.systemd-boot.enable = true;
-boot.loader.efi.canTouchEfiVariables = true;
-
-networking = {
-	hostName = "nixtop";
-	wireless.enable = true;
-	connman.enable = true;
-};
+  networking.hostName = "ewilliamson";
+  # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
   # Select internationalisation properties.
   # i18n = {
@@ -72,60 +25,69 @@ networking = {
   # };
 
   # Set your time zone.
-time.timeZone = "US/Pacific";
+  time.timeZone = "US/Pacific";
 
+  # List packages installed in system profile. To search, run:
+  # $ nix search wget
+  environment.systemPackages = with pkgs; [
+    wget vim zsh sway i3lock i3status xwayland dmenu termite
+  ];
 
+  nixpkgs.config.allowUnfree = true;
+  virtualisation.virtualbox.host.enable = true;
+  nixpkgs.config.virtualbox.enableExtensionPack = true;
+
+  # Some programs need SUID wrappers, can be configured further or are
+  # started in user sessions.
+  # programs.bash.enableCompletion = true;
+  # programs.mtr.enable = true;
+  # programs.gnupg.agent = { enable = true; enableSSHSupport = true; };
+  programs.sway.enable = true;
+  programs.fish.enable = true;
 
   # List services that you want to enable:
 
   # Enable the OpenSSH daemon.
   # services.openssh.enable = true;
 
+  # Open ports in the firewall.
+  # networking.firewall.allowedTCPPorts = [ ... ];
+  # networking.firewall.allowedUDPPorts = [ ... ];
+  # Or disable the firewall altogether.
+  # networking.firewall.enable = false;
+
   # Enable CUPS to print documents.
   # services.printing.enable = true;
 
+  # Enable sound.
+  sound.enable = true;
+  hardware.pulseaudio.enable = true;
+
   # Enable the X11 windowing system.
-
-virtualisation.virtualbox.host.enable = true;
-
-services.xserver = {
-	enable = true;
-	windowManager.i3.enable = true;
-	layout = "us";
-
-  config = ''
-    Section "InputClass"
-      Identifier "TPPS/2 IBM TrackPoint"
-      MatchProduct "TPPS/2 IBM TrackPoint"
-      MatchDevicePath "/dev/input/event*"
-      Option "EmulateWheel" "true"
-      Option "EmulateWheelButton" "2"
-      Option "ButtonMapping" "1 2 3 5 4"
-    EndSection
-
-    Section "InputClass"
-      Identifier "keyboard catchall"
-      MatchIsKeyboard "on"
-      Option "XKbOptions" "shift:both_capslock,ctrl:nocaps"
-    EndSection
-    '';
-
-};
-  # services.xserver.layout = "us";
+  #services.xserver.enable = true;
+  #services.xserver.layout = "us";
+  # services.xserver.windowManager.sway.enable = true;
   # services.xserver.xkbOptions = "eurosign:e";
 
+  # Enable touchpad support.
+  # services.xserver.libinput.enable = true;
+
   # Enable the KDE Desktop Environment.
-  # services.xserver.displayManager.kdm.enable = true;
-  # services.xserver.desktopManager.kde4.enable = true;
+  # services.xserver.displayManager.sddm.enable = true;
+  # services.xserver.desktopManager.plasma5.enable = true;
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
-users.defaultUserShell = "/run/current-system/sw/bin/zsh";
-users.extraUsers.ertw = {
-  isNormalUser = true;
-  description = "Erik Williamson";
-  extraGroups = [ "wheel" "vboxusers" ];
-};
+  users.extraUsers.ewilliamson = {
+    isNormalUser = true;
+    description = "Erik Williamson";
+    extraGroups = ["wheel" "sway"];
+    shell = pkgs.fish;
+  };
 
-  # The NixOS release to be compatible with for stateful data such as databases.
-system.stateVersion = "16.03";
+  # This value determines the NixOS release with which your system is to be
+  # compatible, in order to avoid breaking some software such as database
+  # servers. You should change this only after NixOS release notes say you
+  # should.
+  system.stateVersion = "18.03"; # Did you read the comment?
+
 }
